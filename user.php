@@ -122,9 +122,9 @@ if($_POST["type"] === "signup"){
                        $new_width, $new_height,
                        $width, $height);
                        
-    if($fileMimeType === "image/png") {imagepng($thumb, $file_dir2, 80);}
-    elseif($fileMimeType === "image/gif") {imagegif($thumb, $file_dir2, 80);}
-    elseif($fileMimeType === "image/pjpeg" || $fileMimeType === "image/jpeg") {imagejpeg($thumb, $file_dir2, 80);}
+    if($fileMimeType === "image/png") {imagepng($thumb, $file_dir2, 1);}
+    elseif($fileMimeType === "image/gif") {imagegif($thumb, $file_dir2);}
+    elseif($fileMimeType === "image/pjpeg" || $fileMimeType === "image/jpeg") {imagejpeg($thumb, $file_dir2, 90);}
     
     // deletes the origianl image
     unlink($file_dir1);
