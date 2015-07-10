@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ajax Chatroom</title>
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link href='https://fonts.googleapis.com/css?family=Magra:400,700' rel='stylesheet' type='text/css'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.4.js"></script>
+        <script src="vr/recorder.js"></script>
+		<script src="vr/Fr.voice.js"></script>
+    </head>
+    <body>
+        
+        <div id="prog-con">
+            <div id="prog-bar">30%</div>
+        </div>
+        <div id="notice"></div>
+        <div id="timer"></div>
+        <div id="room">
+            <div id="user" class="container-fluid">
+                <form id="register_form" class="col-xs-6" method="POST" action="user.php" class="userform">
+                    <h2>Register</h2>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="username" class="input-group-addon">Username</label>
+                            <input type="text" name="username" id="username" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="password" class="input-group-addon">Password</label>
+                            <input type="password" name="password" id="password" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="pp" class="input-group-addon">Profile Picture</label>
+                            <input type="file" name="pp" id="pp" class="form-control">
+                        </div>
+                    </div>
+                    <input type="hidden" name="type" value="signup">
+                    <input type="submit" name="signup" id="signup" class="btn btn-success" value="Signup">
+                </form>
+                <form id="login_form" class="col-xs-6" method="POST" action="user.php" class="userform">
+                    <h2>Login</h2>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="login-username" class="input-group-addon">Username</label>
+                            <input type="text" name="login-username" id="login-username" class="form-control">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label for="login-password" class="input-group-addon">Password</label>
+                            <input type="password" name="login-password" id="login-password" class="form-control">
+                        </div>
+                    </div>
+                    <input type="hidden" name="type" value="login">
+                    <input type="submit" name="login" id="login" class="btn btn-success" value="Login">
+                </form>
+            </div>
+        </div>
+        <form action="post.php" method="POST" style="display:none" id="imgform">
+            <input type="file" name="real_img" id="real_img" onchange="clickSubmit();">
+            <input type="button" name="submitimg" id="submitimg" onclick="sendIMG();">
+            <input type="hidden" name="type" value="img">
+        </form>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>

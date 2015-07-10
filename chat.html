@@ -1,0 +1,11 @@
+<header class="container"><h1>Chat Room Application</h1></header>
+<button class="btn btn-danger" id="logout" onclick="logout();">logout</button>
+<div class="main" id="msgs-zone">
+    <div id="topbtn"><button class="btn btn-info" id="loadold" onclick="loadOLD();">Load older messages</button></div>
+</div>
+<div class="inputs" id="inputs">
+    <input type="text" name="text" id="text" class="col-xs-9" onkeypress="pressedEnter(event);">
+    <button type="button" name="send" id="send" class="btn btn-primary col-xs-1" onclick="sendP();"><i class="fa fa-paper-plane"></i></button>
+    <button type="button" name="atch" id="atch" class="btn btn-warning col-xs-1" onclick="chooseIMG();"><i class="fa fa-picture-o"></i></button>
+    <button type="button" name="rcrd" id="rcrd" class="btn btn-danger col-xs-1" onclick="beginRecording();"><i class="fa fa-microphone"></i></button>
+</div>
