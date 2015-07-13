@@ -186,7 +186,6 @@ if (isset($_POST["type"])) {
         suicide($response,"success");
     }
     
-<<<<<<< HEAD
     if($_POST["type"] === "login"){
         $username = $_POST["login-username"];
         $password = $_POST["login-password"];
@@ -215,36 +214,6 @@ if (isset($_POST["type"])) {
             "notice" => "Logged-in successfully, trying to load messages now.",
             "go" => "room",
             "id" => $userid
-=======
-    $thumb = imagecreatetruecolor( $thumb_width, $thumb_height );
-    
-    // Resize and crop
-    imagecopyresampled($thumb,
-                       $org_image,
-                       0 - ($new_width - $thumb_width) / 2, // Center the image horizontally
-                       0 - ($new_height - $thumb_height) / 2, // Center the image vertically
-                       0, 0,
-                       $new_width, $new_height,
-                       $width, $height);
-                       
-    if($fileMimeType === "image/png") {imagepng($thumb, $file_dir2, 1);}
-    elseif($fileMimeType === "image/gif") {imagegif($thumb, $file_dir2);}
-    elseif($fileMimeType === "image/pjpeg" || $fileMimeType === "image/jpeg") {imagejpeg($thumb, $file_dir2, 90);}
-    
-    // deletes the origianl image
-    unlink($file_dir1);
-
-    $stmt = mysqli_prepare($db, "INSERT INTO users (name, pass, img) VALUES (?, ?, ?)");
-    if (!mysqli_stmt_bind_param($stmt, 'sss', $username,$password,$file_dir2)) suicide("Error: ".mysqli_error($db),"error");
-    if (!mysqli_stmt_execute($stmt)) suicide("Error: ".mysqli_error($db),"error");
-    if (!mysqli_stmt_close($stmt)) suicide("Error: ".mysqli_error($db),"error");
-
-    $response = array(
-        "notice" => "You're Successfully registered, we will log you in now",
-        "go" => "login",
-        "username" => $username,
-        "password" => $password
->>>>>>> origin/master
         );
         
         suicide($response,"success");
