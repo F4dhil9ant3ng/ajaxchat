@@ -103,7 +103,7 @@ $("form").submit(function(evt){
             }
         // if the parsing wasn't successful, it means that it's a PHP error :( .. darn it.. it's probably a missing semicolon.
         } catch (e) {
-            notice("Server Side error: no suicide attempt occured.");console.log(response);
+            notice(response);
         }
     };
     
