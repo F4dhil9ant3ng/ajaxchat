@@ -103,7 +103,7 @@ $("form").submit(function(evt){
             }
         // if the parsing wasn't successful, it means that it's a PHP error :( .. darn it.. it's probably a missing semicolon.
         } catch (e) {
-            notice("Server Side error: no suicide attempt occured.");console.log(response);
+            notice(response);
         }
     };
     
@@ -283,7 +283,7 @@ var populateMessages = function (data,target) {
         // if it's an audio
         else if (M_type === "audio") MarkupString = MarkupString + '<audio controls><source src="'+M_content+'" type="audio/mpeg">Your browser does not support the audio element.</audio>';
         // if none of the above then it's a paragaph, anyway let's just add it
-        else MarkupString = MarkupString + M_content;
+         else if (M_type === "p") MarkupString = MarkupString + "<span>" + M_name + "</span><span>" + M_content + "</span>" ;
         // close the P for content
         MarkupString = MarkupString + '</p>';
         // adds time
@@ -550,6 +550,7 @@ var stopRecording = function () {
 This function is on the onclick attribute of the button, it does nothing but excutes the loadMessages function with occurence = earlier
 ...*/
 var loadOLD = function () {
+    $("#topbtn").html("<div class='loader'></div>");
     loadMessages("earlier");
 };
 

@@ -1,26 +1,36 @@
 <?php
+
+// SUICIDE FUNCTION
 function suicide($msg,$type){
     $suicide_note = array("type"=>$type,"text"=>$msg);
     $suicide_note = json_encode($suicide_note);
     echo($suicide_note);
     die();
 }
+
+// if there's no type=something in the post method, no message posted to this 
 if(!isset($_POST["type"])) suicide("Nothing requested.","error");
 
-//database connection
+// if there's no ID .. in the $_SESSION .. it means no user have been logged in.
+session_start();
+if(!isset($_SESSION["id"])) suicide("You're logged out.","error");
+
+// database connection
 $servername = "0.0.0.0";
-$username = "arrayy";
+$username = "alisaleem";
 $password = "";
 $database = "chat";
 
 if(!$db = mysqli_connect($servername,$username,$password,$database)) suicide("Error: ".mysqli_connect_error($db),"error");
 
-session_start();
-
+// let's get the information we're going to put in the table
 $userid = $_SESSION["id"];
 $type = $_POST["type"];
 $date = gmdate("Y-m-d H:i:s", time());
-$status = "none";
+
+// one more thing ... the content ... this depends on the type
+
+// if it's an image it needs to be uploaded
 if($type === "img") {
     // check: selected a file
     if(empty($_FILES['real_img']['name'])) suicide("Error: Please select an image.","error");
@@ -54,17 +64,20 @@ if($type === "img") {
     if(!move_uploaded_file($_FILES["real_img"]["tmp_name"], $file_dir)) suicide("Error moving file to the direcotry.","error");
     
     $content = $file_dir;
-} else {
+}
+
+// if it's not an image, it's either an audio or text .. in that case, let's just put it in the content field
+else {
     $content = $_POST["content"];
 }
 
-
-$stmt = mysqli_prepare($db, "INSERT INTO messages (userid, type, content, date, status) VALUES (?, ?, ?, ?, ?)");
-if (!mysqli_stmt_bind_param($stmt, 'issss', $userid, $type, $content, $date, $status)) suicide("Error: ".mysqli_error($db),"error");
+// now let's do the MYSQL query in the parametrized way..
+$stmt = mysqli_prepare($db, "INSERT INTO messages (userid, type, content, date) VALUES (?, ?, ?, ?)");
+if (!mysqli_stmt_bind_param($stmt, 'isss', $userid, $type, $content, $date)) suicide("Error: ".mysqli_error($db),"error");
 if (!mysqli_stmt_execute($stmt)) suicide("Error: ".mysqli_error($db),"error");
 if (!mysqli_stmt_close($stmt)) suicide("Error: ".mysqli_error($db),"error");
 
 
-
+// aaaannndd let's suicide with success.
 suicide("posted","success");
 ?>
