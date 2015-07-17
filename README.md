@@ -1,4 +1,4 @@
-# ajaxchat 0.1
+# ajaxchat 0.2
 A chat script based on JavaScript and PHP with images and audio messages.
 
 ## Features:
