@@ -219,6 +219,4 @@ if (isset($_POST["type"])) {
         suicide($response,"success");
     }
 }
-
-
 ?>
